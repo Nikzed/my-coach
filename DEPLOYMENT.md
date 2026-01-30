@@ -12,7 +12,7 @@
 
 ### 1. Build and push Docker image
 
-Increment the version tag each time (e.g., v8, v9, v10...):
+Increment the version tag each time (e.g., v8, v9, v10...): IMPORTANT. CHECK THE CURRENT VERSION!
 
 ```powershell
 gcloud builds submit --tag europe-central2-docker.pkg.dev/my-coach-flutter/serverpod/my-coach-server:v8 my_coach_serverpod_challenge_server

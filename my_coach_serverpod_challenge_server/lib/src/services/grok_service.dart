@@ -185,11 +185,17 @@ class GrokService {
   String _buildVoiceParsingSystemPrompt(
     List<Map<String, dynamic>> availableCoaches,
   ) {
-    final coachList = availableCoaches.map((c) {
-      return '- ID: ${c['id']}, Name: ${c['name']}, Description: ${c['description']}';
-    }).join('\n');
+    final coachList = availableCoaches
+        .map((c) {
+          return '- ID: ${c['id']}, Name: ${c['name']}, Description: ${c['description']}';
+        })
+        .join('\n');
+
+    final now = DateTime.now();
 
     return '''You are a task parsing assistant. Your job is to extract task information from natural language voice input.
+
+Current date and time: ${now.toIso8601String()}
 
 Available coaches for assignment:
 $coachList
@@ -197,7 +203,7 @@ $coachList
 PARSING RULES:
 1. Extract the task name - the main action or goal
 2. Extract description if there are additional details
-3. Extract due time if mentioned (convert relative times like "tomorrow at 3pm" to ISO 8601 format)
+3. Extract due time if mentioned (convert relative times like "tomorrow at 3pm" to ISO 8601 format, using the current time as the starting point ${now.toIso8601String()})
 4. Suggest a coach based on the task tone:
    - Tough/strict/discipline tasks → Sergeant
    - Gentle/supportive/emotional tasks → Melly (or similar gentle coach)
@@ -296,8 +302,7 @@ If you cannot determine the task name, set status to "needs_clarification" and a
         'coachConfidence': 0.0,
         'subtasks': [],
         'reminders': [0, 30],
-        'clarificationQuestion':
-            'I had trouble understanding that. Could you tell me what task you want to create?',
+        'clarificationQuestion': 'I had trouble understanding that. Could you tell me what task you want to create?',
       };
     }
   }
