@@ -634,17 +634,6 @@ class _VoiceInputSheetState extends State<VoiceInputSheet> {
         const SizedBox(height: 16),
         Row(
           children: [
-            Expanded(
-              child: OutlinedButton(
-                onPressed: () {
-                  context.read<VoiceInputBloc>().add(
-                        VoiceInputDraftDiscarded(draftId: draft.id!),
-                      );
-                },
-                child: const Text('Cancel'),
-              ),
-            ),
-            const SizedBox(width: 8),
             // Voice input button for clarification
             Expanded(
               child: OutlinedButton.icon(
@@ -656,7 +645,7 @@ class _VoiceInputSheetState extends State<VoiceInputSheet> {
                       );
                 },
                 icon: const Icon(Icons.mic, size: 18),
-                label: const Text('Use Voice'),
+                label: const Text('Voice'),
               ),
             ),
             const SizedBox(width: 8),

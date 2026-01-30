@@ -53,8 +53,7 @@ void main() async {
 
   // Initialize Google Sign-In with the server's Web Application Client ID
   client.auth.initializeGoogleSignIn(
-    serverClientId:
-        '726428908817-08rq3a4h4e3h8qmas9anltfc91ou0ph5.apps.googleusercontent.com',
+    serverClientId: '726428908817-08rq3a4h4e3h8qmas9anltfc91ou0ph5.apps.googleusercontent.com',
   );
 
   // Initialize session manager with error handling
@@ -347,90 +346,112 @@ class SignInPage extends StatelessWidget {
             ],
           ),
         ),
-        child: ListView(
-          padding: EdgeInsets.only(
-            left: 24,
-            right: 24,
-            top: MediaQuery.of(context).padding.top + 32,
-            bottom: MediaQuery.of(context).padding.bottom + 32,
-          ),
-          children: [
-            const SizedBox(height: 24),
-            Text(
-              "My Coach",
-              style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                color: AppTheme.accent,
-                fontWeight: FontWeight.w700,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final topPadding = MediaQuery.of(context).padding.top + 32;
+            final bottomPadding = MediaQuery.of(context).padding.bottom + 32;
+            return SingleChildScrollView(
+              padding: EdgeInsets.only(
+                left: 24,
+                right: 24,
+                top: topPadding,
+                bottom: bottomPadding,
               ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              "Have someone to go through your goals with!",
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppTheme.textSecondary,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 32),
-            // Features
-            _FeatureItem(
-              icon: "📋",
-              title: "Create Tasks",
-              description: "Set your goals with deadlines",
-            ),
-            const SizedBox(height: 16),
-            _FeatureItem(
-              icon: "🎖️",
-              title: "Choose Your Coach",
-              description: "Sergeant for tough guidance or Melly for soothing support",
-            ),
-            const SizedBox(height: 16),
-            _FeatureItem(
-              icon: "📞",
-              title: "Get Called",
-              description: "Your coach will call to remind you or check in if you miss a deadline",
-            ),
-            const SizedBox(height: 32),
-            // Sign in widget
-            Container(
-              padding: const EdgeInsets.all(0),
-              decoration: BoxDecoration(
-                color: AppTheme.surface,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: const Color(0xFF2A2A30),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight - topPadding - bottomPadding,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Top content
+                    Column(
+                      children: [
+                        const SizedBox(height: 24),
+                        Text(
+                          "My Coach",
+                          style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                            color: AppTheme.accent,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          "Have someone to go through your "
+                          "goals with!",
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: AppTheme.textSecondary,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 32),
+                        // Features
+                        _FeatureItem(
+                          icon: "📋",
+                          title: "Create Tasks",
+                          description: "Set your goals with deadlines",
+                        ),
+                        const SizedBox(height: 16),
+                        _FeatureItem(
+                          icon: "🎖️",
+                          title: "Choose Your Coach",
+                          description:
+                              "Sergeant for tough guidance or "
+                              "Melly for soothing support",
+                        ),
+                        const SizedBox(height: 16),
+                        _FeatureItem(
+                          icon: "📞",
+                          title: "Get Called",
+                          description:
+                              "Your coach will call to remind "
+                              "you or check in if you miss a "
+                              "deadline",
+                        ),
+                        const SizedBox(height: 32),
+                        // Sign in widget
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 24,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppTheme.surface,
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: const Color(0xFF2A2A30),
+                            ),
+                          ),
+                          child: GoogleSignInWidget(
+                            client: client,
+                            onAuthenticated: () {
+                              authStateNotifier.value = true;
+                            },
+                            onError: (error) {
+                              _showAuthError(context, error);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    // Footer pinned to bottom
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24),
+                      child: Text(
+                        "@2026 My Coach\n"
+                        "Made for the Serverpod Challenge",
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppTheme.textMuted,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              child: SignInWidget(
-                client: client,
-                googleSignInWidget: GoogleSignInWidget(
-                  client: client,
-                  onAuthenticated: () {
-                    authStateNotifier.value = true;
-                  },
-                  onError: (error) {
-                    _showAuthError(context, error);
-                  },
-                ),
-                onAuthenticated: () {
-                  authStateNotifier.value = true;
-                },
-                onError: (error) {
-                  _showAuthError(context, error);
-                },
-              ),
-            ),
-            const SizedBox(height: 24),
-            Text(
-              "@2026 My Coach\nMade for the Serverpod Challenge",
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppTheme.textMuted,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 24),
-          ],
+            );
+          },
         ),
       ),
     );
