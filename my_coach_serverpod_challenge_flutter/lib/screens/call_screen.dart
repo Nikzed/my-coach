@@ -181,6 +181,7 @@ class _CallScreenState extends State<CallScreen> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: Container(
+        width: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -212,12 +213,13 @@ class _CallScreenState extends State<CallScreen> with TickerProviderStateMixin {
 
               const SizedBox(height: 32),
 
-              if (_messageText != null)
-                Flexible(
-                  child: SingleChildScrollView(
-                    child: _buildMessageCard(context, coachColor),
-                  ),
-                ),
+              // if (_messageText != null)
+              //   Flexible(
+              //     child: SingleChildScrollView(
+              //       child: _buildMessageCard(context, coachColor),
+              //     ),
+              //   ),
+              
 
               if (_errorMessage != null) _buildErrorMessage(context),
 

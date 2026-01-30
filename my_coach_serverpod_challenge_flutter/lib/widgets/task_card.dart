@@ -333,30 +333,31 @@ class _LiveTimeTextState extends State<_LiveTimeText> {
 
   static String _formatDueTime(DateTime dateTime) {
     final now = DateTime.now();
-    final diff = dateTime.difference(now);
+    final today = DateTime(now.year, now.month, now.day);
+    final dueDay = DateTime(dateTime.year, dateTime.month, dateTime.day);
+    final dayDiff = dueDay.difference(today).inDays;
 
-    if (diff.isNegative) {
-      if (diff.inDays.abs() == 0) {
+    if (dayDiff < 0) {
+      if (dayDiff == -1) {
+        return 'Yesterday ${DateFormat.jm().format(dateTime)}';
+      }
+      return DateFormat.MMMd().format(dateTime);
+    } else if (dayDiff == 0) {
+      final diff = dateTime.difference(now);
+      if (diff.isNegative) {
         if (diff.inHours.abs() < 1) {
           return '${diff.inMinutes.abs()}m ago';
         }
         return '${diff.inHours.abs()}h ago';
-      } else if (diff.inDays.abs() == 1) {
-        return 'Yesterday ${DateFormat.jm().format(dateTime)}';
-      } else {
-        return DateFormat.MMMd().format(dateTime);
       }
+      if (diff.inHours < 1) {
+        return 'in ${diff.inMinutes}m';
+      }
+      return 'Today ${DateFormat.jm().format(dateTime)}';
+    } else if (dayDiff == 1) {
+      return 'Tomorrow ${DateFormat.jm().format(dateTime)}';
     } else {
-      if (diff.inDays == 0) {
-        if (diff.inHours < 1) {
-          return 'in ${diff.inMinutes}m';
-        }
-        return 'Today ${DateFormat.jm().format(dateTime)}';
-      } else if (diff.inDays == 1) {
-        return 'Tomorrow ${DateFormat.jm().format(dateTime)}';
-      } else {
-        return DateFormat.MMMd().format(dateTime);
-      }
+      return DateFormat.MMMd().format(dateTime);
     }
   }
 }
