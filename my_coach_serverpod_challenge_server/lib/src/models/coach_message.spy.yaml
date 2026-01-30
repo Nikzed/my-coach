@@ -1,0 +1,19 @@
+### AI-generated coach message with audio
+class: CoachMessage
+table: coach_message
+fields:
+  ### Reference to the task this message is about
+  taskId: int, relation(parent=task)
+  ### Reference to the coach who generated this message
+  coachId: int, relation(parent=coach)
+  ### The generated text content of the message
+  textContent: String
+  ### Path to the stored audio file (MP3)
+  audioStoragePath: String?
+  ### When this message was generated
+  generatedAt: DateTime
+indexes:
+  coach_message_task_idx:
+    fields: taskId
+    type: btree
+

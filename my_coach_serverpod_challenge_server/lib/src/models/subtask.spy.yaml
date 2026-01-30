@@ -1,0 +1,18 @@
+### Subtask for breaking down tasks into smaller steps
+class: Subtask
+table: subtask
+fields:
+  ### Reference to the parent task
+  taskId: int, relation(parent=task)
+  ### The name/description of the subtask
+  name: String
+  ### Order index for sorting subtasks
+  orderIndex: int
+  ### Whether the subtask has been completed
+  isCompleted: bool
+  ### When the subtask was marked as completed
+  completedAt: DateTime?
+indexes:
+  subtask_task_idx:
+    fields: taskId
+    type: btree

@@ -1,0 +1,4 @@
+type: server
+
+client_package_path: ../my_coach_serverpod_challenge_client
+server_test_tools_path: test/integration/test_tools

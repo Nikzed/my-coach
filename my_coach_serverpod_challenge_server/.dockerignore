@@ -1,0 +1,6 @@
+config/passwords.yaml
+config/firebase_service_account_key.json
+storage/
+.dart_tool/
+build/
+web/app

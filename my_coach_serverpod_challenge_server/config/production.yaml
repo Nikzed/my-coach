@@ -1,0 +1,41 @@
+# Production configuration for Google Cloud Run deployment.
+# Cloud Run URL will be updated after first deployment (Step H11).
+
+# Configuration for the main API server.
+apiServer:
+  port: 8080
+  publicHost: my-coach-server-726428908817.europe-central2.run.app
+  publicPort: 443
+  publicScheme: https
+
+# Configuration for the Insights server.
+# insightsServer:
+#   port: 8081
+#   publicHost: my-coach-server-726428908817.europe-central2.run.app
+#   publicPort: 443
+#   publicScheme: https
+
+# Configuration for the web server.
+# webServer:
+#   port: 8082
+#   publicHost: my-coach-server-726428908817.europe-central2.run.app
+#   publicPort: 443
+#   publicScheme: https
+
+# Cloud SQL via public IP (direct TCP).
+database:
+  host: 34.116.220.188
+  port: 5432
+  name: my_coach_serverpod_challenge
+  user: postgres
+
+redis:
+  enabled: false
+  host: localhost
+  port: 6379
+
+maxRequestSize: 524288
+
+sessionLogs:
+  consoleEnabled: true
+  consoleLogFormat: json

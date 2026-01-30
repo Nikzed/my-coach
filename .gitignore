@@ -1,0 +1,29 @@
+# OS files
+.DS_Store
+Thumbs.db
+nul
+
+# IDE / Editor
+.vscode/
+.idea/
+.metals/
+*.iml
+*.ipr
+*.iws
+
+# IDE
+**/.cursor/
+
+# Claude Code
+**/.claude/settings.local.json
+
+# Firebase / Google Services (contains API keys)
+**/google-services.json
+**/GoogleService-Info.plist
+
+# Temp files
+**/tmpclaude*
+
+# Environment & secrets
+*.env
+.env.*

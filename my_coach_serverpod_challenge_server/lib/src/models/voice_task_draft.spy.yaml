@@ -1,0 +1,41 @@
+### Draft task created from voice input, pending user confirmation
+class: VoiceTaskDraft
+table: voice_task_draft
+fields:
+  ### User who created this draft (serverpod_auth user UUID)
+  userId: String
+  ### Session ID for conversation continuity
+  sessionId: String
+  ### Original transcribed text from speech-to-text
+  transcribedText: String
+  ### AI-parsed task name
+  parsedName: String?
+  ### AI-parsed task description
+  parsedDescription: String?
+  ### AI-parsed due time as ISO string
+  parsedDueTime: String?
+  ### AI-suggested coach ID based on task tone
+  suggestedCoachId: int?
+  ### Confidence score (0-1) for coach suggestion
+  coachConfidence: double?
+  ### JSON array of subtask names
+  parsedSubtasks: String?
+  ### JSON array of minutesBefore values for reminders
+  parsedReminders: String?
+  ### Status: pending, needs_clarification, confirmed, expired
+  status: String
+  ### Question to ask user if clarification needed
+  clarificationQuestion: String?
+  ### JSON array of conversation history for multi-turn clarification
+  conversationHistory: String?
+  ### When the draft was created
+  createdAt: DateTime
+  ### When the draft expires (auto-cleanup)
+  expiresAt: DateTime
+indexes:
+  voice_draft_user_idx:
+    fields: userId
+    type: btree
+  voice_draft_session_idx:
+    fields: sessionId
+    type: btree

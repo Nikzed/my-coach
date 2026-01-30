@@ -1,0 +1,20 @@
+### User device registration for FCM push notifications
+class: UserDevice
+table: user_device
+fields:
+  ### Reference to the user who owns this device (serverpod_auth user UUID)
+  userId: String
+  ### Firebase Cloud Messaging token for push notifications
+  fcmToken: String
+  ### Platform identifier ('android' or 'ios')
+  platform: String
+  ### When the FCM token was last updated
+  lastUpdated: DateTime
+indexes:
+  user_device_user_idx:
+    fields: userId
+    unique: true
+  user_device_fcm_token_idx:
+    fields: fcmToken
+    unique: true
+

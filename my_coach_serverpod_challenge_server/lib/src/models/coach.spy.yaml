@@ -1,0 +1,25 @@
+### Coach character model for AI coaching personas
+class: Coach
+table: coach
+fields:
+  ### The name of the coach character (e.g., "Sergeant", "Melly")
+  name: String
+  ### A brief description of the coach's personality
+  description: String
+  ### System prompt for Grok LLM defining the coach's personality
+  personalityPrompt: String
+  ### ElevenLabs voice ID for text-to-speech
+  elevenLabsVoiceId: String
+  ### ElevenLabs model ID (e.g., eleven_multilingual_v2, eleven_v3)
+  elevenLabsModelId: String?
+  ### Voice stability setting (0.0-1.0)
+  voiceStability: double?
+  ### Voice similarity boost setting (0.0-1.0)
+  voiceSimilarity: double?
+  ### Voice style setting (0.0-1.0)
+  voiceStyle: double?
+  ### Voice speed setting (0.5-2.0)
+  voiceSpeed: double?
+  ### Whether to use speaker boost
+  useSpeakerBoost: bool?
+

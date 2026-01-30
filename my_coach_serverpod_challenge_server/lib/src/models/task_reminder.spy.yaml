@@ -1,0 +1,16 @@
+### Individual reminder for a task (Google Calendar style - multiple reminders per task)
+class: TaskReminder
+table: task_reminder
+fields:
+  ### Reference to the parent task
+  taskId: int, relation(parent=task)
+  ### Minutes before due time to send reminder (0 = at due time, 30 = 30 min before, 1440 = 1 day before)
+  minutesBefore: int
+  ### Whether this reminder has been sent
+  isSent: bool
+  ### When the reminder was sent
+  sentAt: DateTime?
+indexes:
+  task_reminder_task_idx:
+    fields: taskId
+    type: btree

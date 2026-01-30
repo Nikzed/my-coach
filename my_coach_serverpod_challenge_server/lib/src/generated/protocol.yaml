@@ -1,0 +1,45 @@
+audio:
+  - getAudio:
+  - getMessage:
+  - getMessagesForTask:
+googleIdp:
+  - login:
+jwtRefresh:
+  - refreshAccessToken:
+coach:
+  - getCoaches:
+  - getCoach:
+device:
+  - registerDevice:
+  - unregisterDevice:
+greeting:
+  - hello:
+taskReminder:
+  - getReminders:
+  - addReminder:
+  - removeReminder:
+  - updateReminder:
+  - addDefaultReminders:
+  - removeAllReminders:
+subtask:
+  - getSubtasks:
+  - completeSubtask:
+  - uncompleteSubtask:
+  - addSubtask:
+  - updateSubtask:
+  - deleteSubtask:
+  - reorderSubtasks:
+task:
+  - createTask:
+  - createTaskWithReminders:
+  - updateTask:
+  - deleteTask:
+  - completeTask:
+  - getUserTasks:
+  - getPendingTasks:
+  - uncompleteTask:
+voiceInput:
+  - parseVoiceInput:
+  - confirmDraft:
+  - discardDraft:
+  - getPendingDrafts:

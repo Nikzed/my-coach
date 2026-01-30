@@ -1,0 +1,28 @@
+### User task with optional due time for AI coach reminders
+class: Task
+table: task
+fields:
+  ### Reference to the user who owns this task (serverpod_auth user UUID)
+  userId: String
+  ### Reference to the coach character assigned to this task (optional - no coach means no reminders)
+  coachId: int?, relation(parent=coach)
+  ### The name/title of the task
+  name: String
+  ### Optional detailed description of the task
+  description: String?
+  ### Optional due time - tasks without this won't trigger reminders
+  dueTime: DateTime?
+  ### Whether the task has been completed
+  isCompleted: bool
+  ### When the task was marked as completed
+  completedAt: DateTime?
+  ### When the task was created
+  createdAt: DateTime
+indexes:
+  task_user_idx:
+    fields: userId
+    type: btree
+  task_due_time_idx:
+    fields: dueTime
+    type: btree
+
