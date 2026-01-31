@@ -20,48 +20,44 @@ dependencies:
     path: ../my_coach_serverpod_challenge_client
   serverpod_auth_idp_flutter: 3.2.3
   serverpod_flutter: 3.2.3
-  
-  # UI
   cupertino_icons: ^1.0.5
   google_fonts: ^7.1.0
   flutter_animate: ^4.5.0
   
   # State Management
-  # flutter_riverpod: ^2.5.1  # Commented out - migrating to BLoC
   flutter_bloc: ^9.1.1
   equatable: ^2.0.5
   
   # Audio playback
   just_audio: ^0.10.5
   
-  # Push notifications
+  # Local/Push notifications
+  flutter_local_notifications: ^19.5.0
   firebase_core: ^4.4.0
   firebase_messaging: ^16.1.1
   
-  # Incoming call UI
   flutter_callkit_incoming: ^3.0.0
   
-  # Date/Time picker
   intl: ^0.20.2
-  
-  # Local notifications
-  flutter_local_notifications: ^19.5.0
   
   # UUID for call IDs
   uuid: ^4.5.1
 
-  # Voice input (ElevenLabs Scribe v2 Realtime)
   record: ^5.1.0
   web_socket_channel: ^3.0.3
   permission_handler: ^11.3.0
   flutter_slidable: ^4.0.3
-
-  # Local storage for settings
   shared_preferences: ^2.2.2
-
-  # Modal bottom sheets
   wolt_modal_sheet: ^0.11.0
   flutter_ringtone_player: ^4.0.0+4
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.7
+
+flutter_icons:
+  android: true
+  image_path: "assets/icon/icon.png"
+  adaptive_icon_foreground: "assets/icon/icon.png"
+  adaptive_icon_background: "#FFFFFF"
 
 dev_dependencies:
   flutter_lints: '>=3.0.0 <7.0.0'
