@@ -1,0 +1,1 @@
+Review the whole project and test it on privacy. Clearing the REVIEW.md after you finish and filling it with the structured list of errors and improvements required for this project to have a safe usage.
